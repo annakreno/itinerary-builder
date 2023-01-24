@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<% if (user) { %>
+
+    <h2>Enter Visit Details</h2>
+
+    <form action="/visits" method="POST">
+        
+        <label>Visit Name:
+            <input type="string" name="visitName">
+        </label><br>
+        
+        <label>Start Date:
+            <input type="datetime-local" name="startDate">
+        </label><br>
+        
+        <label>End Date:
+            <input type="datetime-local" name="endDate">
+        </label><br>
+        
+        <button type="submit">Add Visit</button>
+
+    </form>
+
+<% } else { %>
+    <a href="/auth/google">Please log in to add visits</a>
+<% } %>
+
+<%- include('../partials/footer') %>

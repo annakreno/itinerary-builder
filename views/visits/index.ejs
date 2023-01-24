@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+<% if (user) { %>
+    <ul>
+        <% if (visits.length) { %>
+            <% visits.forEach(function(v) { %>
+                <% if (user?._id.equals(v.user)) { %>
+                        <li><a href="/visits/<%= v._id %>"><%= v.visitName %></a></li>
+                <% } %>     
+            <% }); %>
+            </ul>
+            <a href="/visits/new"	<%- title === 'Add Visit' ? 'class="active"' : '' %>>Add Visit</a>
+        <% } else { %>
+            <h3>No Visits Added</h3>
+            <a href="/visits/new"	<%- title === 'Add Visit' ? 'class="active"' : '' %>>Add Visit</a>
+        <% } %>
+<% } else { %>
+    <h3>Please log in to view visits</h3>
+<% } %>
+
+
+<%- include('../partials/footer') %>

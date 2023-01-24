@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<% if (user) { %>
+    
+    <% if (days.length) { %>
+        <% days.forEach(function(d) { %>
+            <div>d</div>
+        <% }); %>
+        <% } else { %>
+            <h3>No Days Added</h3>
+    <% } %>
+
+    <a href="/days/new"	<%- title === 'Add Day' ? 'class="active"' : '' %>>Add Day</a>
+
+<% } else { %>
+    <h3>Please log in to view details</h3>
+<% } %>
+
+<%- include('../partials/footer') %>
+
