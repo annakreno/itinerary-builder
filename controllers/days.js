@@ -1,5 +1,5 @@
-const visit = require('../models/visit');
 const Visit = require('../models/visit');
+const Activity = require('../models/activity');
 
 module.exports = {
     create,
@@ -16,13 +16,19 @@ function create(req, res) {
 }
 
 function edit(req, res) {
-    //use visit id from URL to find a visit
-    Visit.findById(req.params.id, function(err, visit) {
-        //find the selected day using dayId from URL
-        visit.days.find({_id: req.params.dayId}, function(err, day) {
-            // find all referenced activities
-            const activities = day.activities
-            res.render('days/show', {title: 'Edit Day'}, day, activities)
-        })   
-    });
+    Visit.findById(req.params.id).populate('days.activities').exec(function(err, visit) {
+        console.log('visit', visit);
+        const day = visit.days.filter(function(day) {
+            console.log('day id', day._id);
+            return day._id == req.params.dayId;
+        })[0];
+        console.log('day', day);
+        console.log('day._id:', day._id);
+        const activities = day.activities
+        console.log('activities', activities)
+        res.render('days/show', {title: 'Edit Day', visit, day, activities});
+        
+    })
 }
+
+

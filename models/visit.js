@@ -8,10 +8,10 @@ const daySchema = new Schema({
         default: new Date(),
         required: true,
     },
-    activities: {
+    activities: [{
         type: Schema.Types.ObjectId,
         ref: 'Activity',
-    },
+    }],
 }, {
     timestamps: true
 });
