@@ -19,7 +19,6 @@ const activitySchema = new Schema({
     rating: Number,
     user_ratings_total: Number,
     reservable: Boolean,
-    time: Date,
     notes: String,
 }, {
   timestamps: true

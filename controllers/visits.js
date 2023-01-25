@@ -1,3 +1,4 @@
+const Activity = require('../models/activity');
 const Visit = require('../models/visit');
 
 module.exports = {
@@ -8,12 +9,9 @@ module.exports = {
 };
 
 function index(req, res) {
-    req.body.user = req.user._id;
-    req.body.userName = req.user.name;
-    req.body.userAvatar = req.user.avatar;
-    Visit.find(({}, function(err, visits) {
+    Visit.find({user: req.user._id}, function(err, visits) {
         res.render('visits/index', {title: 'My Visits', visits});
-    }));
+    });
 }
 
 function newVisit(req, res) {
@@ -41,6 +39,9 @@ function create(req,res) {
 function show(req, res) {
     Visit.findById(req.params.id, function(err, visit) {
         console.log(visit);
-        res.render('visits/show', {title: 'Visit Details', visit});
+        Activity.find({_id: visit.days.activities}, function(err, activities) {
+            res.render('visits/show', {title: 'Visit Details', visit, activities});
+        })
+        
     })
 };

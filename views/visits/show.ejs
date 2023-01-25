@@ -1,20 +1,61 @@
 <%- include('../partials/header') %>
 
-<% if (user) { %>
-    
-    <% if (days.length) { %>
-        <% days.forEach(function(d) { %>
-            <div>d</div>
-        <% }); %>
-        <% } else { %>
-            <h3>No Days Added</h3>
-    <% } %>
+<h2> <%= visit.visitName %> </h2>
 
-    <a href="/days/new"	<%- title === 'Add Day' ? 'class="active"' : '' %>>Add Day</a>
+<div> <%= visit.startDate %> - <%= visit.endDate %> </div>
 
+<br>
+
+<% if (visit.days.length) { %>
+    <% visit.days.forEach(function(d) { %>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th> <%= d.name %> </th> 
+                        <th> <%= d.date %> </th>
+                        <th>
+                            <a href="/visits/<%= visit._id %>/days/<%= d._id %>">Edit</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% activities.forEach(function(a) { %>
+                    <tr>
+                        <td><%= a.name %></td>
+                        <td><%= a.formatted_address %></td>
+                        <td><%= a.type %></td>
+                        <td><%= a.notes %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+
+    <% }); %>
 <% } else { %>
-    <h3>Please log in to view details</h3>
+    <h3>No Days Added</h3>
 <% } %>
+
+<h2>Add Day:</h2>
+
+<form action="/visits/<%= visit._id %>/days" method="POST">
+        
+    <label>Name:
+        <input type="string" name="name">
+    </label><br>
+        
+    <label>Date:
+        <input type="datetime-local" name="date">
+    </label><br>
+        
+    <button type="submit">Add Day</button>
+
+</form>
+
+
+
 
 <%- include('../partials/footer') %>
 
