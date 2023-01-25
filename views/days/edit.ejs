@@ -1,0 +1,7 @@
+<%- include('../partials/header') %>
+
+<form id="delete-day-form" action="/visits/<%= visit._id %>/days/<%= day._id %>?_method=DELETE" method="POST" >
+    <button type="submit">Delete Day</button>
+</form>
+
+<%- include('../partials/footer') %>

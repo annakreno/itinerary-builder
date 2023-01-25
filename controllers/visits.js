@@ -37,8 +37,18 @@ function create(req,res) {
 }
 
 function show(req, res) {
+    //grab selected visit
     Visit.findById(req.params.id, function(err, visit) {
         console.log(visit);
+        //grab associated activities for each day?????????????
+        const activitiesIdArr = visit.days.forEach(function(day) {
+            return day.activities
+        });
+        activitiesIdArr.forEach(function(activityId) {
+            Activity.find({_id: activityId}, function() {
+                
+            })
+        })
         Activity.find({_id: visit.days.activities}, function(err, activities) {
             res.render('visits/show', {title: 'Visit Details', visit, activities});
         })

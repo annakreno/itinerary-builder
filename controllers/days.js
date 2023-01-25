@@ -26,7 +26,7 @@ function edit(req, res) {
         console.log('day._id:', day._id);
         const activities = day.activities
         console.log('activities', activities)
-        res.render('days/show', {title: 'Edit Day', visit, day, activities});
+        res.render('days/show', {title: `${day.name}`, visit, day, activities});
         
     })
 }

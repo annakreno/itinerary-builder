@@ -5,38 +5,29 @@
 <div> <%= visit.startDate %> - <%= visit.endDate %> </div>
 
 <br>
+<div id="days-container">
 
-<% if (visit.days.length) { %>
-    <% visit.days.forEach(function(d) { %>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th> <%= d.name %> </th> 
-                        <th> <%= d.date %> </th>
-                        <th>
-                            <a href="/visits/<%= visit._id %>/days/<%= d._id %>">Edit</a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% activities?.forEach(function(a) { %>
-                    <tr>
-                        <td><%= a.name %></td>
-                        <td><%= a.formatted_address %></td>
-                        <td><%= a.type %></td>
-                        <td><%= a.notes %></td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
+    <% if (visit.days.length) { %>
+        <% visit.days.forEach(function(d) { %>
+            <div class="day-column">
+                <div id="name-date"> <%= d.name %> (<%= d.date %>)</div>
+                <a href="/visits/<%= visit._id %>/days/<%= d._id %>">Edit</a>
+                <% activities?.forEach(function(a) { %>
+                    <div id="visit-day-activity-list"><%= a.name %>
+                        <ul>
+                            <li><%= a.formatted_address %></li>
+                            <li><%= a.type %></li>
+                            <li><%= a.notes %></li>
+                        </ul>
+                    </div>
+                <% }); %>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <h3>No Days Added</h3>
+    <% } %>
 
-
-    <% }); %>
-<% } else { %>
-    <h3>No Days Added</h3>
-<% } %>
+</div>
 
 <h2>Add Day:</h2>
 
