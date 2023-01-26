@@ -1,6 +1,29 @@
+colors {
+  color: rgb(163,231,244);
+  color:rgb(79,195,200);
+  color: rgb(0,146,179);
+  color: rgb(176,165,216);
+  color: rgb(239,161,48);
+  color: rgb(245,200,116);
+  color: rgb(162,198,130);
+  color: rgb(89,128,39);
+  color: rgb(245,135,65);
+  color: rgb(245,102,38);
+  color: rgb(245,83,56);
+  color: rgb(245,185,191);
+
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* background-color: rgb(245,200,116); */
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+  display: grid;
+  grid-template-columns: ;
+  grid-template-rows: ;
+
 }
 
 a {
@@ -17,3 +40,13 @@ a {
 .login img {
   height: 30px;
 }
+
+nav {
+  background-color: rgb(89,128,39);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+

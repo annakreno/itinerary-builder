@@ -1,5 +1,9 @@
 <%- include('../partials/header') %>
 
+<form class="back-button" action="/visits/<%= visit._id %>" method="GET" >
+    <button type="submit">⇦</button>
+</form>
+
 <form id="delete-day-form" action="/visits/<%= visit._id %>/days/<%= day._id %>?_method=DELETE" method="POST" >
     <button type="submit">Delete Day</button>
 </form>

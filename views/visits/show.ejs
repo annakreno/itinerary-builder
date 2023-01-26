@@ -1,5 +1,9 @@
 <%- include('../partials/header') %>
 
+<form class="back-button" action="/visits" method="GET" >
+    <button type="submit">⇦</button>
+</form>
+
 <h2> <%= visit.visitName %> </h2>
 
 <div> <%= visit.startDate %> - <%= visit.endDate %> </div>

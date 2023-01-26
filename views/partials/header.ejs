@@ -13,14 +13,14 @@
 <body>
     
     <nav>
-        <img src="images/travel.png">
+        <div>🌎</div>
         
-        <a href="/"	<%- title === 'Home' ? 'class="active"' : '' %>>Home</a>
+        <div><a href="/"	<%- title === 'Home' ? 'class="active"' : '' %>>Home</a></div>
         <% if (user) { %>
-            <a href="/visits" <%- title === 'My Visits' ? 'class="active"' : '' %>>My Visits</a>
-            <a href="/logout">LOG OUT</a>
+            <div><a href="/visits" <%- title === 'My Visits' ? 'class="active"' : '' %>>My Visits</a></div>
+            <div><a href="/logout">LOG OUT</a></div>
         <% } else { %>
-        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+        <div><a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a></div>
         <% } %>
     </nav>
 
