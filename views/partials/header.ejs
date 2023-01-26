@@ -13,9 +13,9 @@
 <body>
     
     <nav>
-        <img src="/images/camera.svg">
+        <img src="images/travel.png">
+        
         <a href="/"	<%- title === 'Home' ? 'class="active"' : '' %>>Home</a>
-        <a href="/activities"<%- title === 'Browse Activities' ? 'class="active"' : '' %>>Browse Activities</a>
         <% if (user) { %>
             <a href="/visits" <%- title === 'My Visits' ? 'class="active"' : '' %>>My Visits</a>
             <a href="/logout">LOG OUT</a>

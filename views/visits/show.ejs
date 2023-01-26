@@ -10,17 +10,22 @@
     <% if (visit.days.length) { %>
         <% visit.days.forEach(function(d) { %>
             <div class="day-column">
-                <div id="name-date"> <%= d.name %> (<%= d.date %>)</div>
-                <a href="/visits/<%= visit._id %>/days/<%= d._id %>">Edit</a>
-                <% activities?.forEach(function(a) { %>
-                    <div id="visit-day-activity-list"><%= a.name %>
-                        <ul>
-                            <li><%= a.formatted_address %></li>
-                            <li><%= a.type %></li>
-                            <li><%= a.notes %></li>
-                        </ul>
-                    </div>
-                <% }); %>
+                <div id="days-container"> 
+                    <h4><%= d.name %> <br> <%= d.date %></h4>
+                    <a href="/visits/<%= visit._id %>/days/<%= d._id %>">Edit</a>
+                </div>
+                <div id="activities-container">
+                    <h4>Activities:</h4>
+                    <% d.activities?.forEach(function(a) { %>
+                        <div id="visit-day-activity-list"><%= a.name %>
+                            <ul>
+                                <li><%= a.formatted_address %></li>
+                                <li><%= a.type %></li>
+                                <li><%= a.notes %></li>
+                            </ul>
+                        </div>
+                    <% }); %>
+                </div>
             </div>
         <% }); %>
     <% } else { %>

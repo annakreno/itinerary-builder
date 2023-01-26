@@ -1,60 +1,64 @@
 <%- include('../partials/header') %>
 
-
-<form id="edit-day-form" action="/visits/<%= visit._id %>/days/<%= day._id %>?_method=UPDATE" method="POST" >
-    <button type="submit">Edit Day</button>
+<form id="delete-day-form" action="/visits/<%= visit._id %>/days/<%= day._id %>?_method=DELETE" method="POST" >
+    <button type="submit">Delete Day</button>
 </form>
 
-<br>
+<div id="edit-day-container">
+    <h3>Edit Day:</h3>
+    <form id="edit-day-form" action="/visits/<%= visit._id %>/days/<%= day._id %>?_method=PUT" method="POST" >
+        <label>Name:
+            <input type="string" name="name" value="<%= day.name %>">
+        </label><br>
+        <label>Date:
+            <input type="datetime-local" name="date" value="<%= defaultDate %>"
+        </label><br>
+        <button type="submit">Update</button>
+    </form>
+</div>
 
-<h3>Activities:</h3>
-
-<div class="activities-shell">
-
+<div id="activities-container">
+    <h3>Activities:</h3>
     <% activities.forEach(function(a) { %> 
-    
-        <div class="activity-container"><%= a.name %>
+        <div class="activity-list"><%= a.name %>
             <ul>
                 <li><%= a.formatted_address %></li>
                 <li><%= a.type %></li>
                 <li><%= a.notes %></li>
             </ul>
-            <form id="delete-activity-form" action="/visits/<%= visit._id %>/days/<%= day._id %>/activities/a._id?_method=DELETE" method="POST" >
+            <form id="delete-activity-form" action="/visits/<%= visit._id %>/days/<%= day._id %>/activities/<%= a._id %>?_method=DELETE" method="POST" >
                 <button type="submit">X</button>
             </form>
         </div>
-        <br>
-        
-     
     <% }); %>
-    
 </div>
 
 
+<div id="add-activity-container">
+    <h3>Add Activity:</h3>
+    <form action="/visits/<%= visit._id %>/days/<%= day._id %>/activities" method="POST">
+            
+        <label>Name:
+            <input type="string" name="name">
+        </label><br>
+            
+        <label>Address:
+            <input type="string" name="formatted_address">
+        </label><br>
+
+        <label>Type:
+            <input type="string" name="type">
+        </label><br>
+
+        <label>Notes:
+            <input type="string" name="notes">
+        </label><br>
+            
+        <button type="submit">Add Activity</button>
+
+    </form>
+</div>
 
 
-<h3>Add Activity:</h3>
-
-<form action="/visits/<%= visit._id %>/days/<%= day._id %>/activities" method="POST">
-        
-    <label>Name:
-        <input type="string" name="name">
-    </label><br>
-        
-    <label>Address:
-        <input type="string" name="formatted_address">
-    </label><br>
-
-    <label>Type:
-        <input type="string" name="type">
-    </label><br>
-
-    <label>Notes:
-        <input type="string" name="notes">
-    </label><br>
-        
-    <button type="submit">Add Activity</button>
-
-</form>
 
 <%- include('../partials/footer') %>

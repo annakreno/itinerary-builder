@@ -31,27 +31,12 @@ function create(req,res) {
       const visit = new Visit(req.body);
       visit.save(function(err) {
         if (err) return res.redirect('/visits/new');
-        console.log(visit);
         res.redirect('/visits');
       });
 }
 
 function show(req, res) {
-    //grab selected visit
-    Visit.findById(req.params.id, function(err, visit) {
-        console.log(visit);
-        //grab associated activities for each day?????????????
-        const activitiesIdArr = visit.days.forEach(function(day) {
-            return day.activities
-        });
-        activitiesIdArr.forEach(function(activityId) {
-            Activity.find({_id: activityId}, function() {
-                
-            })
-        })
-        Activity.find({_id: visit.days.activities}, function(err, activities) {
-            res.render('visits/show', {title: 'Visit Details', visit, activities});
-        })
-        
+    Visit.findById(req.params.id).populate('days.activities').exec(function(err, visit) {
+        res.render('visits/show', {title: 'Visit Details', visit});
     })
 };

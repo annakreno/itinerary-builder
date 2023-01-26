@@ -1,8 +1,10 @@
 const Visit = require('../models/visit');
 const Activity = require('../models/activity');
+const activity = require('../models/activity');
 
 module.exports = {
     create,
+    deleteOne,
 };
 
 function create(req, res) {
@@ -22,4 +24,21 @@ function create(req, res) {
             })
         });
     })
+}
+
+function deleteOne(req, res) {
+    Activity.findById(req.params.activityId, function(err, activity) {
+        console.log("This is the selected activity:", activity);
+    });
+    Visit.findById(req.params.id, function(err, visit) {
+        const day = visit.days.filter(function(day) {
+            return day._id == req.params.dayId;
+        })[0];
+        // let activity = day.activities.filter(function(activity) {
+        //     return activity._id == req.params.activityId;
+        // })[0];
+        day.activities.remove(req.params.activityId);
+        visit.save();
+        res.redirect(`/visits/${visit._id}/days/${day._id}`);
+    });
 }
