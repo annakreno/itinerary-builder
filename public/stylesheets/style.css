@@ -310,9 +310,9 @@ form.edit-button > button,  .add-day-container > form > button {
   grid-template-columns: 2.5fr 1fr;
   grid-template-rows: .25fr 1fr;
   padding: 2%;
-  border-color: blue;
+  /* border-color: blue;
   border-style: solid;
-  border-width: 5px;
+  border-width: 5px; */
 
 }
 
