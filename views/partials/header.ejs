@@ -11,21 +11,22 @@
 </head>
 
 <body>
+
+<div class="page-container">
     
     <nav>
-        <div>🌎</div>
-        
-        <div><a href="/"	<%- title === 'Home' ? 'class="active"' : '' %>>Home</a></div>
         <% if (user) { %>
-            <div><a href="/visits" <%- title === 'My Visits' ? 'class="active"' : '' %>>My Visits</a></div>
-            <div><a href="/logout">LOG OUT</a></div>
+            <div class="logout"><form class="logout" action="/logout" method="GET" >
+                <button type="submit">log out</button>
+            </form></div>
         <% } else { %>
-        <div><a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a></div>
+        <div><a href="/auth/google" class="login">log in&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a></div>
         <% } %>
     </nav>
 
-    <main>
-    <h1><%= title %></h1>
+    <div class="title">
+        <h1><%= title %></h1>
+    </div>
 
 
   

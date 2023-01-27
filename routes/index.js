@@ -4,7 +4,7 @@ const passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Itinerary Builder' });
+  res.render('index', { title: 'itinerary builder' });
 });
 
 // Google OAuth login route

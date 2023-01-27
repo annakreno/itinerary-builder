@@ -34,9 +34,6 @@ function deleteOne(req, res) {
         const day = visit.days.filter(function(day) {
             return day._id == req.params.dayId;
         })[0];
-        // let activity = day.activities.filter(function(activity) {
-        //     return activity._id == req.params.activityId;
-        // })[0];
         day.activities.remove(req.params.activityId);
         visit.save();
         res.redirect(`/visits/${visit._id}/days/${day._id}`);
